@@ -10,9 +10,18 @@ let unclickedColor = "orange";
 let clickedColor = "green";
 
 let amountOfNumbers = 5;
+let amountOfStages = 8;
 
 let blockSmallSize = 150;
 let blockBigSize = 200;
+
+let checkMarkBox = document.getElementById("checkImg");
+let successImgSource = "checkmark.svg";
+let failImgSource = "redCross.jpg";
+
+let pointsPerCorrectBlock = 5;
+let pointsPerCorrectStage = 20;
+
 
 //stage variables
 let numbers = [];
@@ -36,11 +45,8 @@ function ResetUI(){
         square.style.pointerEvents = "all"
         square.style.backgroundColor = unclickedColor;
     });
+    checkMarkBox.style.display = "none";
     
-}
-
-function FinishStage(){
-
 }
 
 function ClickBox(btnNmbr){
@@ -52,27 +58,40 @@ function ClickBox(btnNmbr){
         console.log("correcto mundo");
         square.style.backgroundColor  = clickedColor;
         square.style.pointerEvents = "none";
+
+        score += pointsPerCorrectBlock;
     }
     else{
         activeSquares.forEach(square => {
             square.style.pointerEvents = "none";
         });
-
+        checkMarkBox.src = failImgSource;
+        checkMarkBox.style.display = "block";
         EndStage();
         return;
     }
     numberIndex++;
 
+    // in case of success
     if(numberIndex == amountOfNumbers){
+        checkMarkBox.src = successImgSource;
+        checkMarkBox.style.display = "block";
+
+        score += pointsPerCorrectStage;
         EndStage();
     }
 }
 
 function EndStage(){
+    if(stageIndex == amountOfStages){
+        EndGame();
+        return;
+    }
     setTimeout(NewStage ,1000);
 }
 
 function NewStage(){
+    stageIndex += 1;
     ResetUI();
     ResetStageValues();
     CreateNewNumbers();
@@ -126,7 +145,18 @@ function myFunction(squareIndex)
     console.log(squareIndex);
 }
 
+function NewGame(){
+    ResetGameValues();
+} 
 
+function ResetGameValues(){
+    score = 0;
+    stageIndex = 0;
+}
+
+function EndGame(){
+    console.log("Game Ended");
+}
+
+//Actually starting the game
 NewStage();
-
-
