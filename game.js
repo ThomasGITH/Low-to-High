@@ -89,7 +89,7 @@ function ClickBox(btnNmbr){
 
 function EndStage(){
     if(stageIndex == amountOfStages){
-        EndGame();
+        setTimeout(EndGame ,1000);
         return;
     }
     setTimeout(NewStage ,1000);
@@ -166,6 +166,11 @@ function ResetGameValues(){
 
 function EndGame(){
     console.log("Game Ended");
+    activeSquares.forEach(square => {
+        square.style.display = "none";
+        square.style.pointerEvents = "none"
+    });
+    checkMarkBox.style.display = "none";
 }
 
 //Actually starting the game
