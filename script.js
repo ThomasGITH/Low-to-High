@@ -34,10 +34,6 @@ function RandomNumbers(length, maxValue) {
 }
 
 
-function myFunction(squareIndex)
-{
-    console.log(squareIndex);
-}
 
 CreateNewNumbers();
 AssignNewNumbers();

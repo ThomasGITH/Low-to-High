@@ -17,6 +17,14 @@ let stageIndex = 0;
 
 function ResetStageValues(){
     numberIndex = 0;
+    activeSquares = [];
+    numbers = [];
+}
+
+function ResetUI(){
+    activeSquares.forEach(square => {
+        square.style.display = "none";
+    });
 }
 
 function FinishStage(){
@@ -24,10 +32,25 @@ function FinishStage(){
 }
 
 function ClickBox(btnNmbr){
-    
+    squareID = "box" + btnNmbr;
+    let square = document.getElementById(squareID);
+    console.log(btnNmbr);
+    if(square.children[0].textContent == numbers[numberIndex]){
+        console.log("correcto mundo");
+    }
+    else{
+        console.log("im not homophobic, but ur a fagot");
+    }
+    numberIndex++;
+
+    if(numberIndex == 5){
+        console.log();
+        setTimeout(NewStage ,2000);
+    }
 }
 
 function NewStage(){
+    ResetUI();
     ResetStageValues();
     CreateNewNumbers();
     AssignNewNumbers();
@@ -40,13 +63,15 @@ function CreateNewNumbers(){
 }
 
 function AssignNewNumbers(){
-    activeSquares = RandomNumbers(5, 9);
+    squareNumbers = RandomNumbers(5, 9);
     for(let i = 0; i < 5; i++){
-        squareID = "box" + activeSquares[i];
+        squareID = "box" + squareNumbers[i];
         let square = document.getElementById(squareID);
         square.style.display = "block";
         square.children[0].textContent = numbers[i];
+        activeSquares[i] = square;
     };
+    console.log(activeSquares);
 }
 
 function RandomNumbers(length, maxValue){
@@ -56,6 +81,12 @@ function RandomNumbers(length, maxValue){
         if(arr.indexOf(r) === -1) arr.push(r);
     }
     return arr;
+}
+
+
+function myFunction(squareIndex)
+{
+    console.log(squareIndex);
 }
 
 NewStage();
