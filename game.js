@@ -6,10 +6,13 @@
 // text2.textContent = "2";
 
 //constant variables
-let unclickedColor = "blue";
+let unclickedColor = "orange";
 let clickedColor = "green";
 
 let amountOfNumbers = 5;
+
+let blockSmallSize = 150;
+let blockBigSize = 200;
 
 //stage variables
 let numbers = [];
@@ -33,6 +36,7 @@ function ResetUI(){
         square.style.pointerEvents = "all"
         square.style.backgroundColor = unclickedColor;
     });
+    
 }
 
 function FinishStage(){
@@ -88,9 +92,23 @@ function AssignNewNumbers(){
         let square = document.getElementById(squareID);
         square.style.display = "block";
         square.children[0].textContent = numbers[i];
+        square.style.backgroundColor = unclickedColor;
         activeSquares[i] = square;
+        let size = RandomBinary(blockSmallSize, blockBigSize);
+        square.style.width = size;
+        square.style.height = size;
     };
     console.log(activeSquares);
+}
+
+function RandomBinary(firstValue, secondValue){
+    let temp = Math.round(Math.random());
+    if(temp>0.5){
+        return firstValue;
+    }
+    else{
+        return secondValue
+    }
 }
 
 function RandomNumbers(length, maxValue){

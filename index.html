@@ -9,6 +9,10 @@
                 background-color: aqua; */
         }
 
+        body{
+            background-color:darkcyan;
+        }
+
         .gameField {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -25,6 +29,7 @@
             padding: 1em;
             width: 1fr;
             height: 1fr;
+            background-color:darkcyan;
         }
 
         .grid-item {
@@ -37,9 +42,9 @@
         .box {
             position: absolute;
             display: none;
-            background-color: blue;
-            width: 150;
-            height: 150;
+            /* background-color: blue; */
+            width: 200;
+            height: 200;
         }
 
         .number {
@@ -122,6 +127,8 @@
             </div>
         </div>
     </div>
+    <div class="checkMarker"><img id='checkImg' src="check-solid.svg" style="width: 13.5%; height: 13.5%; margin-left: 44%; "/> </div>
+
     <script src="game.js"></script>
 </body>
 
