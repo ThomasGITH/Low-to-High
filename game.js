@@ -50,14 +50,22 @@ function ClickBox(btnNmbr){
         square.style.pointerEvents = "none";
     }
     else{
-        console.log("im not homophobic, but ur a fagot");
+        activeSquares.forEach(square => {
+            square.style.pointerEvents = "none";
+        });
+
+        EndStage();
+        return;
     }
     numberIndex++;
 
     if(numberIndex == amountOfNumbers){
-        console.log();
-        setTimeout(NewStage ,2000);
+        EndStage();
     }
+}
+
+function EndStage(){
+    setTimeout(NewStage ,1000);
 }
 
 function NewStage(){
