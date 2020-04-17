@@ -5,22 +5,48 @@
 // var text2 = box2.children[0];
 // text2.textContent = "2";
 
-
+//stage variables
 let numbers = [];
 let activeSquares = [];
 
+let numberIndex = 0;
+
+//game variables
+let score = 0;
+let stageIndex = 0;
+
+function ResetStageValues(){
+    numberIndex = 0;
+}
+
+function FinishStage(){
+
+}
+
+function ClickBox(btnNmbr){
+    
+}
+
+function NewStage(){
+    ResetStageValues();
+    CreateNewNumbers();
+    AssignNewNumbers();
+    numbers.sort(function(a, b){return a-b});
+    console.log(numbers);
+}
+
 function CreateNewNumbers(){
     numbers = RandomNumbers(5, 100);
-    console.log(numbers);
 }
 
 function AssignNewNumbers(){
     activeSquares = RandomNumbers(5, 9);
-    activeSquares.forEach(nmbr => {
-        squareID = "box" + nmbr;
+    for(let i = 0; i < 5; i++){
+        squareID = "box" + activeSquares[i];
         let square = document.getElementById(squareID);
         square.style.display = "block";
-    });
+        square.children[0].textContent = numbers[i];
+    };
 }
 
 function RandomNumbers(length, maxValue){
@@ -32,6 +58,6 @@ function RandomNumbers(length, maxValue){
     return arr;
 }
 
+NewStage();
 
-CreateNewNumbers();
-AssignNewNumbers();
+
