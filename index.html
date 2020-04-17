@@ -67,6 +67,11 @@
             right: 10;
             top: -5;
         }
+        .stats{
+            position:absolute;
+            text-align: right;
+            
+        }
         #backImg{
             width: 280px;
             height: 220px;
@@ -80,6 +85,10 @@
 <div class="backButton"><img id='backImg' src="back_button.png" />
     <h1 class='terug'>TERUG</h1>
 </div>
+    <div class="stats">
+        <h1 id="scoreCounter"></h1>
+        <h1 id="stageCounter"></h1>
+    </div>
     <div class="gameField">
         <div class="grid-item item-1">
             <div class="box" id="box1" ontouchstart="ClickBox(1)">
