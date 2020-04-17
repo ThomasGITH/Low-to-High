@@ -5,6 +5,12 @@
 // var text2 = box2.children[0];
 // text2.textContent = "2";
 
+//constant variables
+let unclickedColor = "blue";
+let clickedColor = "green";
+
+let amountOfNumbers = 5;
+
 //stage variables
 let numbers = [];
 let activeSquares = [];
@@ -24,6 +30,8 @@ function ResetStageValues(){
 function ResetUI(){
     activeSquares.forEach(square => {
         square.style.display = "none";
+        square.style.pointerEvents = "all"
+        square.style.backgroundColor = unclickedColor;
     });
 }
 
@@ -34,16 +42,19 @@ function FinishStage(){
 function ClickBox(btnNmbr){
     squareID = "box" + btnNmbr;
     let square = document.getElementById(squareID);
+    console.log(square);
     console.log(btnNmbr);
     if(square.children[0].textContent == numbers[numberIndex]){
         console.log("correcto mundo");
+        square.style.backgroundColor  = clickedColor;
+        square.style.pointerEvents = "none";
     }
     else{
         console.log("im not homophobic, but ur a fagot");
     }
     numberIndex++;
 
-    if(numberIndex == 5){
+    if(numberIndex == amountOfNumbers){
         console.log();
         setTimeout(NewStage ,2000);
     }
@@ -59,12 +70,12 @@ function NewStage(){
 }
 
 function CreateNewNumbers(){
-    numbers = RandomNumbers(5, 100);
+    numbers = RandomNumbers(amountOfNumbers, 100);
 }
 
 function AssignNewNumbers(){
-    squareNumbers = RandomNumbers(5, 9);
-    for(let i = 0; i < 5; i++){
+    squareNumbers = RandomNumbers(amountOfNumbers, 9);
+    for(let i = 0; i < amountOfNumbers; i++){
         squareID = "box" + squareNumbers[i];
         let square = document.getElementById(squareID);
         square.style.display = "block";
@@ -88,6 +99,7 @@ function myFunction(squareIndex)
 {
     console.log(squareIndex);
 }
+
 
 NewStage();
 
