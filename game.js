@@ -171,6 +171,15 @@ function EndGame(){
         square.style.pointerEvents = "none"
     });
     checkMarkBox.style.display = "none";
+
+    let stats = document.getElementById("stats");
+
+    //Those are the Game variables you can move to the center at the end of the Game:
+    //scoreCounter 
+    //stageCounter
+
+    //If you want to start a new game, this method is all you need:
+    //NewGame();
 }
 
 //Actually starting the game
