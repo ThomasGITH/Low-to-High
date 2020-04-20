@@ -1,28 +1,22 @@
-// console.log("In da script");
-// var box = document.getElementById("box1");
-// console.log(box);
-// var box2 = document.getElementById("box2");
-// var text2 = box2.children[0];
-// text2.textContent = "2";
-
 //constant variables
-let unclickedColor = "orange";
-let clickedColor = "green";
+let unclickedColor = "#283975";
+let clickedColor = "#D44067";
 
 let amountOfNumbers = 5;
-let amountOfStages = 3;
+let amountOfStages = 8;
 
 let blockSmallSize = 150;
 let blockBigSize = 200;
 
 let checkMarkBox = document.getElementById("checkImg");
-let successImgSource = "checkmark.svg";
-let failImgSource = "redCross.jpg";
+let successImgSource = "assets/checkmark.svg";
+let failImgSource = "assets/cross.svg";
 let scoreCounter = document.getElementById("scoreCounter");
 let stageCounter = document.getElementById("stageCounter");
 
 let pointsPerCorrectBlock = 5;
 let pointsPerCorrectStage = 20;
+let stagesCompleted = 0;
 
 
 //stage variables
@@ -54,15 +48,11 @@ function ResetUI(){
 function ClickBox(btnNmbr){
     squareID = "box" + btnNmbr;
     let square = document.getElementById(squareID);
-    console.log(square);
-    console.log(btnNmbr);
     if(square.children[0].textContent == numbers[numberIndex]){
-        console.log("correcto mundo");
         square.style.backgroundColor  = clickedColor;
         square.style.pointerEvents = "none";
 
         score += pointsPerCorrectBlock;
-        scoreCounter.textContent = "Score: " + score; 
     }
     else{
         activeSquares.forEach(square => {
@@ -79,15 +69,16 @@ function ClickBox(btnNmbr){
     if(numberIndex == amountOfNumbers){
         checkMarkBox.src = successImgSource;
         checkMarkBox.style.display = "block";
-
+        stagesCompleted ++;
         score += pointsPerCorrectStage;
-        scoreCounter.textContent = "Score: " + score; 
 
         EndStage();
     }
 }
 
 function EndStage(){
+    const hint = document.getElementById('hint');
+    hint.style.display = 'none';
     if(stageIndex == amountOfStages){
         setTimeout(EndGame ,1000);
         return;
@@ -97,14 +88,13 @@ function EndStage(){
 
 function NewStage(){
     stageIndex += 1;
-    stageCounter.textContent = "Stage:" + stageIndex + "/" + amountOfStages;
+    stageCounter.textContent = stageIndex + "/" + amountOfStages;
 
     ResetUI();
     ResetStageValues();
     CreateNewNumbers();
     AssignNewNumbers();
     numbers.sort(function(a, b){return a-b});
-    console.log(numbers);
 }
 
 function CreateNewNumbers(){
@@ -124,7 +114,6 @@ function AssignNewNumbers(){
         square.style.width = size;
         square.style.height = size;
     };
-    console.log(activeSquares);
 }
 
 function RandomBinary(firstValue, secondValue){
@@ -149,13 +138,11 @@ function RandomNumbers(length, maxValue){
 
 function myFunction(squareIndex)
 {
-    console.log(squareIndex);
 }
 
 function NewGame(){
     ResetGameValues();
-    scoreCounter.textContent = "Score: " + score; 
-    stageCounter.textContent = "Stage:" + stageIndex + "/" + amountOfStages;
+    stageCounter.textContent = stageIndex + "/" + amountOfStages;
     NewStage();
 } 
 
@@ -165,14 +152,23 @@ function ResetGameValues(){
 }
 
 function EndGame(){
-    console.log("Game Ended");
     activeSquares.forEach(square => {
         square.style.display = "none";
         square.style.pointerEvents = "none"
     });
-    checkMarkBox.style.display = "none";
 
-    let stats = document.getElementById("stats");
+    checkMarkBox.parentElement.style.display = "none";
+
+    let gameField = document.getElementById("gameField");
+    gameField.style.display = "none";
+
+    stageCounter.style.display = 'none';
+
+    const result = document.getElementById('result');
+    result.textContent = 'Je hebt ' + stagesCompleted + '/' + amountOfStages + ' rondes behaald';
+    const endScreen = document.getElementById('end-screen');
+    endScreen.style.display = 'flex';
+
 
     //Those are the Game variables you can move to the center at the end of the Game:
     //scoreCounter 
