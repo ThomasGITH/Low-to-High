@@ -16,7 +16,6 @@ let stageCounter = document.getElementById("stageCounter");
 
 let pointsPerCorrectBlock = 5;
 let pointsPerCorrectStage = 20;
-let stagesCompleted = 0;
 
 
 //stage variables
@@ -28,9 +27,11 @@ let numberIndex = 0;
 //game variables
 let score = 0;
 let stageIndex = 0;
+let stagesCompleted = 0;
 
 let startScene = document.getElementById("start-scene");
 let gameScene = document.getElementById("gameScene");
+const endScreen = document.getElementById('end-screen');
 
 function ResetStageValues(){
     numberIndex = 0;
@@ -152,24 +153,15 @@ function NewGameSession(){
 function ResetGameValues(){
     score = 0;
     stageIndex = 0;
+    stagesCompleted = 0;
 }
 
 function EndGame(){
-    activeSquares.forEach(square => {
-        square.style.display = "none";
-        square.style.pointerEvents = "none"
-    });
-
-    checkMarkBox.parentElement.style.display = "none";
-
-    let gameField = document.getElementById("gameField");
-    gameField.style.display = "none";
-
-    stageCounter.style.display = 'none';
+    gameScene.style.display = "none";
 
     const result = document.getElementById('result');
     result.textContent = 'Je hebt ' + stagesCompleted + '/' + amountOfStages + ' rondes behaald';
-    const endScreen = document.getElementById('end-screen');
+
     endScreen.style.display = 'flex';
 
 
@@ -189,6 +181,7 @@ function StartGame(){
 
 function EnterStartScene(){
     startScene.style.display = "flex";
+    endScreen.style.display = "none";
     gameScene.style.display = "none";
 }
 
