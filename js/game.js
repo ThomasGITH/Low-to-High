@@ -29,6 +29,9 @@ let numberIndex = 0;
 let score = 0;
 let stageIndex = 0;
 
+let startScene = document.getElementById("start-scene");
+let gameScene = document.getElementById("gameScene");
+
 function ResetStageValues(){
     numberIndex = 0;
     activeSquares = [];
@@ -140,7 +143,8 @@ function myFunction(squareIndex)
 {
 }
 
-function NewGame(){
+function NewGameSession(){
+   // gameScene.style.display = "none";
     ResetGameValues();
     stageCounter.textContent = stageIndex + "/" + amountOfStages;
     NewStage();
@@ -178,5 +182,15 @@ function EndGame(){
     //NewGame();
 }
 
-//Actually starting the game
-NewGame();
+function StartGame(){
+    startScene.style.display = "none"
+    gameScene.style.display = "block";
+    NewGameSession();
+}
+
+function EnterStartScene(){
+    startScene.style.display = "flex";
+    gameScene.style.display = "none";
+}
+
+EnterStartScene();
