@@ -25,6 +25,10 @@
             text-align: center;
             line-height: 6vh;
             margin-bottom: 5vh;
+            color: #1D3574;
+            font-family:Helvetica ;
+            font-size: calc(4vh);
+            margin: 0px;
         }
 
         #start-scene #start-button{
@@ -168,19 +172,19 @@
 </head>
 
 <body>
+    <div class="headerWrap">
+        <div class="backButton"><img id='backImg' src="assets/back_button.png" />
+            <h1 class='terug'>TERUG</h1>
+        </div>
+        <div class="stats" id="stats">
+            <div id="stageCounter"></div>
+        </div>
+    </div>
     <div id="start-scene">
         <h2 id="game-hint">Zet hier een instructie <br> voor de game!</h2>
         <div id="start-button" class="button" ontouchstart="StartGame()">START</div>
     </div>
     <div id="gameScene">
-        <div class="headerWrap">
-            <div class="backButton"><img id='backImg' src="assets/back_button.png" />
-                <h1 class='terug'>TERUG</h1>
-            </div>
-            <div class="stats" id="stats">
-                <div id="stageCounter"></div>
-            </div>
-        </div>
         <div id="gameField">
             <div class="grid-item item-1">
                 <div class="box" id="box1" ontouchstart="ClickBox(1)">
@@ -237,7 +241,7 @@
         <div id='end-screen'>
             <div style="padding-bottom: 30px; font-weight: bold;">Einde spel</div>
             <div id='result'>Je hebt 0/0 rondes gehaald</div>
-
+            <div id="end-button" class="button" ontouchstart="EnterStartScene()">BACK</div>
         </div>
     </div>
 

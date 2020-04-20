@@ -3,7 +3,7 @@ let unclickedColor = "#283975";
 let clickedColor = "#D44067";
 
 let amountOfNumbers = 5;
-let amountOfStages = 8;
+let amountOfStages = 2;
 
 let blockSmallSize = 150;
 let blockBigSize = 200;
@@ -144,7 +144,6 @@ function myFunction(squareIndex)
 }
 
 function NewGameSession(){
-   // gameScene.style.display = "none";
     ResetGameValues();
     stageCounter.textContent = stageIndex + "/" + amountOfStages;
     NewStage();
