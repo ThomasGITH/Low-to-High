@@ -158,6 +158,7 @@ function ResetGameValues(){
 
 function EndGame(){
     gameScene.style.display = "none";
+    stageCounter.style.display = "none";
 
     const result = document.getElementById('result');
     result.textContent = 'Je hebt ' + stagesCompleted + '/' + amountOfStages + ' rondes behaald';

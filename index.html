@@ -8,6 +8,7 @@
             padding: 0px;
             margin: 0px;
             overflow: hidden;
+            font-family:Helvetica ;
         }
 
         #start-scene
@@ -38,9 +39,6 @@
             height: calc(56.250vh  * 0.2);
             border-radius: 10px;
             font-size: calc(7vh);;
-        }
-        h2{
-            margin: 10px;
         }
 
         .button{
@@ -109,25 +107,41 @@
         .terug{
             position: absolute;
             text-align: center;
-            font-size: 45px;
+            font-size: 60px;
             font-family:Helvetica ;
             color: #283975;
             font-weight: 600;
-            right: 10;
-            top: 10;
+            right: -20%;
+            top: -2%;
         }
         .headerWrap{
-            margin: 0 auto;
+            box-sizing: border-box;
+            padding-right: 1%;
+            font-size: 2rem;
             display: flex;
-            justify-content: space-between;
             flex-direction: row;
-        }
-        .backButton{
-            width: 300px;
-            height: 250px;
-            position: relative;
-            display: flex;
+            justify-content: space-between;
             align-items: center;
+            height: 15%;
+            width: 100%;
+            color: #283975;
+            padding-left: calc(56.250vh * 0.04);
+            padding-right: calc(56.250vh * 0.06);
+        }
+
+        .backButton{
+            position: relative;
+            background-image: url("assets/back_button.png");
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: #1D3574;
+            font-weight: bold;
+            min-width: calc(56.250vh * 0.25);
+            height: calc(56.250vh  * 0.25);
+            background-color: transparent;
+            border: none;
+            font-size: calc(7vh);
         }
         .stats{
             width: 300px;
@@ -177,7 +191,7 @@
 
 <body>
     <div class="headerWrap">
-        <div class="backButton"><img id='backImg' src="assets/back_button.png" />
+        <div class="backButton">
             <h1 class='terug'>TERUG</h1>
         </div>
         <div class="stats" id="stats">
