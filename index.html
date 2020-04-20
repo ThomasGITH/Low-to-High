@@ -4,7 +4,7 @@
     <style>
         body{
             background-color:white;
-            height: 100vh;
+            height: 100%;
             padding: 0px;
             margin: 0px;
             overflow: hidden;
@@ -28,7 +28,7 @@
             color: #1D3574;
             font-family:Helvetica ;
             font-size: calc(4vh);
-            margin: 0px;
+            margin-bottom: 90px;
         }
 
         #start-scene #start-button{
@@ -39,6 +39,10 @@
             border-radius: 10px;
             font-size: calc(7vh);;
         }
+        h2{
+            margin: 10px;
+        }
+
         .button{
             font-size: calc(3vh);;
             display: flex;
@@ -241,7 +245,7 @@
     </div>
             <div id='end-screen'>
                 <div style="padding-bottom: 30px; font-weight: bold;">Einde spel</div>
-                <div id='result'>Je hebt 0/0 rondes gehaald</div>
+                <div id='result' style="padding-bottom: 270px">Je hebt 0/0 rondes gehaald</div>
                 <div id="end-button" class="button" ontouchstart="EnterStartScene()">BACK</div>
             </div>
 
