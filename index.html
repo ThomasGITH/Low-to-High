@@ -3,12 +3,20 @@
 <head>
     <style>
         body{
-            background-color:white;
+            background-color:blue;
             height: 100%;
             padding: 0px;
             margin: 0px;
             overflow: hidden;
             font-family:Helvetica ;
+            
+        }
+        .bigWrap{
+            margin: auto;
+            object-fit: contain;
+            height: 100%;
+            max-width: calc(56.250vh);
+            background-color: white;
         }
 
         #start-scene
@@ -87,7 +95,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 40px;
+            font-size: calc(2vh);
             color: white;
         }
 
@@ -154,10 +162,6 @@
             color: #283975;
             font-size: 45px;
         }
-        #backImg{
-            width: 280px;
-            height: 220px;
-        }
 
         .checkMarker{
             height: 12%;
@@ -168,11 +172,11 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            width: 100vw;
-            height: 75vh;
+            height: 45%;
+    width: 100%;
             font-family:Helvetica ;
             color: #283975;
-            font-size: 45px;
+            font-size: calc(3vh);
         }
 
         #hint{
@@ -190,79 +194,80 @@
 </head>
 
 <body>
-    <div class="headerWrap">
-        <div class="backButton">
-            <h1 class='terug'>TERUG</h1>
+    <div class="bigWrap">
+        <div class="headerWrap">
+            <div class="backButton">
+                <h1 class='terug'>TERUG</h1>
+            </div>
+            <div class="stats" id="stats">
+                <div id="stageCounter"></div>
+            </div>
         </div>
-        <div class="stats" id="stats">
-            <div id="stageCounter"></div>
+        <div id="start-scene">
+            <h2 id="game-hint">Zet hier een instructie <br> voor de game!</h2>
+            <div id="start-button" class="button" ontouchstart="StartGame()">START</div>
+        </div>
+        <div id="gameScene">
+            <div id="gameField">
+                <div class="grid-item item-1">
+                    <div class="box" id="box1" ontouchstart="ClickBox(1)">
+                        <div class="inner-box"><h1 class="number" id="text1"></h1></div>
+                    </div>
+                </div>
+                <div class="grid-item item-2">
+                    <div class="box" id="box2" ontouchstart="ClickBox(2)">
+                        <div class="inner-box"><h1 class="number" id="text2"></h1></div>
+                    </div>
+                </div>
+                <div class="grid-item item-3">
+                    <div class="box" id="box3"ontouchstart="ClickBox(3)">
+                        <div class="inner-box"></div><h1 class="number" id="text3"></h1>
+                    </div>
+                </div>
+                <div class="grid-item item-4">
+                    <div class="box" id="box4"ontouchstart="ClickBox(4)">
+                        <div class="inner-box"><h1 class="number" id="text4"></h1></div>
+                    </div>
+                </div>
+                <div class="grid-item item-5">
+                    <div class="box" id="box5"ontouchstart="ClickBox(5)">
+                        <div class="inner-box"><h1 class="number" id="text5"></h1></div>
+                    </div>
+                </div>
+                <div class="grid-item item-6">
+                    <div class="box" id="box6"ontouchstart="ClickBox(6)">
+                        <div class="inner-box"><h1 class="number" id="text6"></h1></div>
+                    </div>
+                </div>
+                <div class="grid-item item-7">
+                    <div class="box" id="box7"ontouchstart="ClickBox(7)">
+                        <div class="inner-box"><h1 class="number" id="text7"></h1></div>
+                    </div>
+                </div>
+                <div class="grid-item item-8">
+                    <div class="box" id="box8"ontouchstart="ClickBox(8)">
+                        <div class="inner-box"><h1 class="number" id="text8"></h1></div>
+                    </div>
+                </div>
+                <div class="grid-item item-9">
+                    <div class="box" id="box9"ontouchstart="ClickBox(9)">
+                        <div class="inner-box"><h1 class="number" id="text9"></h1></div>
+                    </div>
+                </div>
+            </div>
+            <div class="checkMarker">
+                <img id='checkImg' src="assets/checkmark.svg" style="width: 100px; height: 100px; margin-left: 44%; "/> 
+                <div id="hint">
+                    <h1>Klik op de blokjes van laag naar hoog</h1>
+                </div>
+            </div>
+        </div>
+        <div id='end-screen'>
+            <div style="padding-bottom: 30px; font-weight: bold;">Einde spel</div>
+            <div id='result' style="padding-bottom: 270px">Je hebt 0/0 rondes gehaald</div>
+            <div id="end-button" class="button" ontouchstart="EnterStartScene()">BACK</div>
         </div>
     </div>
-    <div id="start-scene">
-        <h2 id="game-hint">Zet hier een instructie <br> voor de game!</h2>
-        <div id="start-button" class="button" ontouchstart="StartGame()">START</div>
-    </div>
-    <div id="gameScene">
-        <div id="gameField">
-            <div class="grid-item item-1">
-                <div class="box" id="box1" ontouchstart="ClickBox(1)">
-                    <div class="inner-box"><h1 class="number" id="text1"></h1></div>
-                </div>
-            </div>
-            <div class="grid-item item-2">
-                <div class="box" id="box2" ontouchstart="ClickBox(2)">
-                    <div class="inner-box"><h1 class="number" id="text2"></h1></div>
-                </div>
-            </div>
-            <div class="grid-item item-3">
-                <div class="box" id="box3"ontouchstart="ClickBox(3)">
-                    <div class="inner-box"></div><h1 class="number" id="text3"></h1>
-                </div>
-            </div>
-            <div class="grid-item item-4">
-                <div class="box" id="box4"ontouchstart="ClickBox(4)">
-                    <div class="inner-box"><h1 class="number" id="text4"></h1></div>
-                </div>
-            </div>
-            <div class="grid-item item-5">
-                <div class="box" id="box5"ontouchstart="ClickBox(5)">
-                    <div class="inner-box"><h1 class="number" id="text5"></h1></div>
-                </div>
-            </div>
-            <div class="grid-item item-6">
-                <div class="box" id="box6"ontouchstart="ClickBox(6)">
-                    <div class="inner-box"><h1 class="number" id="text6"></h1></div>
-                </div>
-            </div>
-            <div class="grid-item item-7">
-                <div class="box" id="box7"ontouchstart="ClickBox(7)">
-                    <div class="inner-box"><h1 class="number" id="text7"></h1></div>
-                </div>
-            </div>
-            <div class="grid-item item-8">
-                <div class="box" id="box8"ontouchstart="ClickBox(8)">
-                    <div class="inner-box"><h1 class="number" id="text8"></h1></div>
-                </div>
-            </div>
-            <div class="grid-item item-9">
-                <div class="box" id="box9"ontouchstart="ClickBox(9)">
-                    <div class="inner-box"><h1 class="number" id="text9"></h1></div>
-                </div>
-            </div>
-        </div>
-        <div class="checkMarker">
-            <img id='checkImg' src="assets/checkmark.svg" style="width: 100px; height: 100px; margin-left: 44%; "/> 
-            <div id="hint">
-                <h1>Klik op de blokjes van laag naar hoog</h1>
-            </div>
-        </div>
-    </div>
-            <div id='end-screen'>
-                <div style="padding-bottom: 30px; font-weight: bold;">Einde spel</div>
-                <div id='result' style="padding-bottom: 270px">Je hebt 0/0 rondes gehaald</div>
-                <div id="end-button" class="button" ontouchstart="EnterStartScene()">BACK</div>
-            </div>
-
     <script src="js/game.js"></script>
 </body>
 
