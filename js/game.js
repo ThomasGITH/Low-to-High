@@ -2,8 +2,8 @@
 let unclickedColor = "#283975";
 let clickedColor = "#D44067";
 
-let amountOfNumbers = 5;
-let amountOfStages = 8;
+let amountOfNumbers = 2;
+let amountOfStages = 3;
 
 let blockSmallSize = 150;
 let blockBigSize = 200;
@@ -17,28 +17,6 @@ let stageCounter = document.getElementById("stageCounter");
 let pointsPerCorrectBlock = 5;
 let pointsPerCorrectStage = 20;
 
-let wordDictionary = {};
-wordDictionary["elf"] = 11;
-wordDictionary["twaalf"] = 12;
-wordDictionary["dertien"] = 13;
-wordDictionary["veertien"] = 14;
-wordDictionary["vijftien"] = 15;
-wordDictionary["zestien"] = 16;
-wordDictionary["zeventien"] = 17;
-wordDictionary["achttien"] = 18;
-wordDictionary["negentien"] = 19;
-
-let numberDictionary = {};
-numberDictionary[11] = "elf";
-numberDictionary[12] = "twaalf";
-numberDictionary[13] = "dertien";
-numberDictionary[14] = "veertien";
-numberDictionary[15] = "vijftien";
-numberDictionary[16] = "zestien";
-numberDictionary[17] = "zeventien";
-numberDictionary[18] = "achttien";
-numberDictionary[19] = "negentien";
-
 
 //stage variables
 let numbers = [];
@@ -46,10 +24,17 @@ let activeSquares = [];
 
 let numberIndex = 0;
 
+//game settings 
+let gameTime = 5;
+
 //game variables
 let score = 0;
 let stageIndex = 0;
 let stagesCompleted = 0;
+
+let timer;
+let timerDisplay = document.getElementById("timer");
+let timerCounter = 0;
 
 let startScene = document.getElementById("start-scene");
 let gameScene = document.getElementById("gameScene");
@@ -74,7 +59,7 @@ function ResetUI(){
 function ClickBox(btnNmbr){
     squareID = "box" + btnNmbr;
     let square = document.getElementById(squareID);
-    if( CompareValue(square.children[0].textContent,numbers[numberIndex])){
+    if( square.children[0].textContent == numbers[numberIndex]){
         square.style.backgroundColor  = clickedColor;
         square.style.pointerEvents = "none";
 
@@ -102,23 +87,11 @@ function ClickBox(btnNmbr){
     }
 }
 
-function CompareValue(first, second){
-    console.log("first: " + first);
-    console.log("second: " + second);
-
-    if(wordDictionary[first]==second){
-        return true;
-    }
-    if(parseInt(first) == second){
-        return true;
-    }
-    return false;
-}
-
 function EndStage(){
     const hint = document.getElementById('hint');
     hint.style.display = 'none';
     if(stageIndex == amountOfStages){
+        StopTimer(false);
         setTimeout(EndGame ,1000);
         return;
     }
@@ -146,20 +119,7 @@ function AssignNewNumbers(){
         squareID = "box" + squareNumbers[i];
         let square = document.getElementById(squareID);
         square.style.display = "block";
-        if(numbers[i]>11 && numbers[i]<20){
-            console.log("Why are you here" + numbers[i]);
-            console.log(numbers[i]);
-            if(RandomBinary(true, false)){
-                square.children[0].textContent = numberDictionary[numbers[i]];
-            }
-            else{
-                square.children[0].textContent = numbers[i];
-            }
-        }
-        else{
-            square.children[0].textContent = numbers[i];
-        }
-        //square.children[0].textContent = numbers[i];
+        square.children[0].textContent = numbers[i];
         square.style.backgroundColor = unclickedColor;
         activeSquares[i] = square;
         let size = RandomBinary(blockSmallSize, blockBigSize);
@@ -187,15 +147,37 @@ function RandomNumbers(length, maxValue){
     return arr;
 }
 
+function StartTimer(){
+    timerCounter = gameTime;
+    timerDisplay.textContent = "Time left: " + timerCounter; 
+    timer = window.setInterval(RefreshTimer, 1000);
+}
 
-function myFunction(squareIndex)
-{
+function RefreshTimer(){
+    timerCounter -= 1;
+
+    timerDisplay.textContent = "Time left: " + timerCounter; 
+
+    if(timerCounter == 0){
+        StopTimer(true);
+    }
+}
+
+function StopTimer(failure){
+    clearInterval(timer);
+
+    if(failure){
+        EndGame();
+        EnterStartScene();
+    }
+    
 }
 
 function NewGameSession(){
     ResetGameValues();
     stageCounter.textContent = stageIndex + "/" + amountOfStages;
     stageCounter.style.display = "block";
+    StartTimer();
     NewStage();
 } 
 
@@ -206,6 +188,7 @@ function ResetGameValues(){
 }
 
 function EndGame(){
+    
     gameScene.style.display = "none";
     stageCounter.style.display = "none";
 
@@ -213,7 +196,6 @@ function EndGame(){
     result.textContent = 'Je hebt ' + stagesCompleted + '/' + amountOfStages + ' rondes behaald';
 
     endScreen.style.display = 'flex';
-
 
     //Those are the Game variables you can move to the center at the end of the Game:
     //scoreCounter 
@@ -236,8 +218,3 @@ function EnterStartScene(){
 }
 
 EnterStartScene();
-
-console.log(wordDictionary);
-console.log(numberDictionary);
-
-console.log(Math.floor(Math.random() * 100) + 1 + '%');
